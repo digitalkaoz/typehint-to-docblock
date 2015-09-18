@@ -2,14 +2,12 @@
 
 namespace DigitalKaoz\TTD\Loader;
 
-use PhpParser\Node;
-
 interface Loader
 {
     /**
      * @param mixed $resource a directory or array of directories
      *
-     * @return array(<string>, Node[])
+     * @return array an array of array of nodes, filename is the key
      */
     public function load($resource);
 }

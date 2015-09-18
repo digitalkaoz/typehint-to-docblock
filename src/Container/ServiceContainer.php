@@ -67,7 +67,7 @@ class ServiceContainer extends Container
             },
 
             'node.walker' => function() {
-                return new NodeWalker($this['parser.traverser'], $this['parser.printer'], new Filesystem());
+                return new NodeWalker($this['parser.traverser']);
             },
 
             'loader.finder' => function() {

@@ -7,7 +7,14 @@ https://github.com/phpspec/phpspec/issues/659
 this library can convert typehinted methods to docblocks (and removing the typehints)
 and the other way around
 
-[![Build Status](https://travis-ci.org/digitalkaoz/typehint-to-docblock.svg?branch=master)](https://travis-ci.org/digitalkaoz/typehint-to-docblock)
+[![Build Status](https://img.shields.io/travis/digitalkaoz/typehint-to-docblock/master.svg?style=flat-square)](https://travis-ci.org/digitalkaoz/typehint-to-docblock)
+[![Dependency Status](https://img.shields.io/versioneye/d/php/digitalkaoz:typehint-to-docblock.svg?style=flat-square)](https://www.versioneye.com/php/digitalkaoz:typehint-to-docblock)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/digitalkaoz/typehint-to-docblock.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/typehint-to-docblock/?branch=master)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/digitalkaoz/typehint-to-docblock/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/typehint-to-docblock/?branch=master)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/2adf07d1-81ae-4c73-9640-74bbf841a9d4.svg?style=flat-square)](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0)
+[![Latest Stable Version](https://img.shields.io/packagist/v/digitalkaoz/typehint-to-docblock.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/typehint-to-docblock)
+[![Total Downloads](https://img.shields.io/packagist/dt/digitalkaoz/typehint-to-docblock.svg?style=flat-square)](https://packagist.org/packages/digitalkaoz/typehint-to-docblock)
+[![StyleCI](https://styleci.io/repos/42720187/shield)](https://styleci.io/repos/42720187)
 
 ## Installation
 
