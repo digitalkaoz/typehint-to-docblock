@@ -18,8 +18,9 @@ class ServiceContainerSpec extends ObjectBehavior
             'console.application'       => 'Symfony\Component\Console\Application',
             'console.command.transform' => 'DigitalKaoz\TTD\Console\TransformCommand',
             'processor.default'         => 'DigitalKaoz\TTD\Processor\DefaultProcessor',
+            'docblock.factory'          => 'DigitalKaoz\TTD\DocBlock\Factory',
             'node.filter'               => 'DigitalKaoz\TTD\Parser\NodeFilter',
-            'node.spec_visitor'         => 'DigitalKaoz\TTD\Parser\SpecVisitor',
+            'node.spec_visitor'         => 'DigitalKaoz\TTD\Parser\ToDocBlockVisitor',
             'node.walker'               => 'DigitalKaoz\TTD\Parser\NodeWalker',
             'loader.finder'             => 'DigitalKaoz\TTD\Loader\FinderLoader',
             'writer.filesystem'         => 'DigitalKaoz\TTD\Writer\FilesystemWriter',
@@ -28,6 +29,8 @@ class ServiceContainerSpec extends ObjectBehavior
             'parser.traverser'          => 'PhpParser\NodeTraverser',
             'parser.printer'            => 'PhpParser\PrettyPrinter\Standard',
         ];
+
+        $this->keys()->shouldBe(array_keys($services));
 
         foreach ($services as $id => $class) {
             $this->offsetExists($id)->shouldBe(true);

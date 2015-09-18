@@ -6,15 +6,13 @@ use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Namespace_;
+use PhpParser\NodeTraverser;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class NodeWalkerSpec extends ObjectBehavior
 {
-    /**
-     * @param \PhpParser\NodeTraverser $traverser
-     */
-    public function let($traverser)
+    public function let(NodeTraverser $traverser)
     {
         $this->beConstructedWith($traverser);
     }
@@ -24,10 +22,7 @@ class NodeWalkerSpec extends ObjectBehavior
         $this->shouldHaveType('DigitalKaoz\TTD\Parser\NodeWalker');
     }
 
-    /**
-     * @param \PhpParser\NodeTraverser $traverser
-     */
-    public function it_traverses_the_nodes_and_dumps_them_to_files($traverser)
+    public function it_traverses_the_nodes_and_dumps_them_to_files(NodeTraverser $traverser)
     {
         $nodes = ['foo.php' => [new Namespace_(new Name(['NameSpace']), [new Class_(new Name(['ClaZZ']), [new ClassMethod(new Name(['Meth0d']))])])]];
 

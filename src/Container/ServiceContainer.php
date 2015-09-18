@@ -3,12 +3,15 @@
 namespace DigitalKaoz\TTD\Container;
 
 use DigitalKaoz\TTD\Console\TransformCommand;
+use DigitalKaoz\TTD\DocBlock\Factory;
 use DigitalKaoz\TTD\Loader\FinderLoader;
 use DigitalKaoz\TTD\Parser\NodeFilter;
 use DigitalKaoz\TTD\Parser\NodeWalker;
-use DigitalKaoz\TTD\Parser\SpecVisitor;
+use DigitalKaoz\TTD\Parser\ToDocBlockVisitor;
 use DigitalKaoz\TTD\Processor\DefaultProcessor;
 use DigitalKaoz\TTD\Writer\FilesystemWriter;
+use phpDocumentor\Reflection\TypeResolver;
+use phpDocumentor\Reflection\Types\ContextFactory;
 use PhpParser\Lexer\Emulative;
 use PhpParser\NodeTraverser;
 use PhpParser\Parser;
@@ -51,12 +54,16 @@ class ServiceContainer extends Container
                 return new DefaultProcessor($this['node.walker'], $this['loader.finder'], $this['writer.filesystem']);
             },
 
+            'docblock.factory' => function () {
+                return new Factory($this['parser.printer'], new ContextFactory(), new TypeResolver());
+            },
+
             'node.filter' => function () {
                 return new NodeFilter();
             },
 
             'node.spec_visitor' => function () {
-                return new SpecVisitor($this['parser.printer'], $this['node.filter']);
+                return new ToDocBlockVisitor($this['docblock.factory'], $this['node.filter']);
             },
 
             'node.walker' => function () {

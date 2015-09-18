@@ -2,17 +2,17 @@
 
 namespace spec\DigitalKaoz\TTD\Console;
 
+use DigitalKaoz\TTD\Parser\NodeFilter;
+use DigitalKaoz\TTD\Processor\Processor;
 use PhpSpec\ObjectBehavior;
+use Pimple\Container;
 use Prophecy\Argument;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\StreamOutput;
 
 class TransformCommandSpec extends ObjectBehavior
 {
-    /**
-     * @param \Pimple\Container $container
-     */
-    public function let($container)
+    public function let(Container $container)
     {
         $this->beConstructedWith($container);
     }
@@ -39,12 +39,7 @@ class TransformCommandSpec extends ObjectBehavior
         $this->getDefinition()->getOption('pattern')->getDefault()->shouldBe('/^[let|go|it_].*$/');
     }
 
-    /**
-     * @param \Pimple\Container                    $container
-     * @param \DigitalKaoz\TTD\Processor\Processor $processor
-     * @param \DigitalKaoz\TTD\Parser\NodeFilter   $filter
-     */
-    public function it_calls_setLogger_and_processes_the_resource($container, $processor, $filter)
+    public function it_calls_setLogger_and_processes_the_resource(Container $container, Processor $processor, NodeFilter $filter)
     {
         $processor->implement('Psr\\Log\\LoggerAwareInterface');
         $container->offsetGet('node.filter')->willReturn($filter);

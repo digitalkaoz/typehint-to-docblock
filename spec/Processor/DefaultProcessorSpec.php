@@ -2,16 +2,15 @@
 
 namespace spec\DigitalKaoz\TTD\Processor;
 
+use DigitalKaoz\TTD\Loader\Loader;
+use DigitalKaoz\TTD\Parser\NodeWalker;
+use DigitalKaoz\TTD\Writer\Writer;
 use PhpSpec\ObjectBehavior;
+use Psr\Log\LoggerInterface;
 
 class DefaultProcessorSpec extends ObjectBehavior
 {
-    /**
-     * @param \DigitalKaoz\TTD\Parser\NodeWalker $walker
-     * @param \DigitalKaoz\TTD\Loader\Loader     $loader
-     * @param \DigitalKaoz\TTD\Writer\Writer     $writer
-     */
-    public function let($walker, $loader, $writer)
+    public function let(NodeWalker $walker, Loader $loader, Writer $writer)
     {
         $this->beConstructedWith($walker, $loader, $writer);
     }
@@ -23,12 +22,7 @@ class DefaultProcessorSpec extends ObjectBehavior
         $this->shouldHaveType('Psr\Log\LoggerAwareInterface');
     }
 
-    /**
-     * @param \DigitalKaoz\TTD\Parser\NodeWalker $walker
-     * @param \DigitalKaoz\TTD\Loader\Loader     $loader
-     * @param \DigitalKaoz\TTD\Writer\Writer     $writer
-     */
-    public function it_loads_parses_and_writes_files($walker, $loader, $writer)
+    public function it_loads_parses_and_writes_files(NodeWalker $walker, Loader $loader, Writer $writer)
     {
         $loader->load(__DIR__)->shouldBeCalled()->willReturn([]);
         $walker->walk([])->shouldBeCalled()->willReturn([]);
@@ -37,10 +31,7 @@ class DefaultProcessorSpec extends ObjectBehavior
         $this->process(__DIR__);
     }
 
-    /**
-     * @param \Psr\Log\LoggerInterface $logger
-     */
-    public function it_sets_the_logger($logger)
+    public function it_sets_the_logger(LoggerInterface $logger)
     {
         $this->setLogger($logger)->shouldBe(null);
     }

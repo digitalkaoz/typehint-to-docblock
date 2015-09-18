@@ -2,15 +2,13 @@
 
 namespace spec\DigitalKaoz\TTD\Writer;
 
+use PhpParser\PrettyPrinterAbstract;
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\Filesystem\Filesystem;
 
 class FilesystemWriterSpec extends ObjectBehavior
 {
-    /**
-     * @param \PhpParser\PrettyPrinterAbstract         $printer
-     * @param \Symfony\Component\Filesystem\Filesystem $filesystem
-     */
-    public function let($printer, $filesystem)
+    public function let(PrettyPrinterAbstract $printer, Filesystem $filesystem)
     {
         $this->beConstructedWith($printer, $filesystem);
     }
@@ -21,11 +19,7 @@ class FilesystemWriterSpec extends ObjectBehavior
         $this->shouldHaveType('DigitalKaoz\TTD\Writer\Writer');
     }
 
-    /**
-     * @param \PhpParser\PrettyPrinterAbstract         $printer
-     * @param \Symfony\Component\Filesystem\Filesystem $filesystem
-     */
-    public function it_writes_nodes_to_files($printer, $filesystem)
+    public function it_writes_nodes_to_files(PrettyPrinterAbstract $printer, Filesystem $filesystem)
     {
         $nodes = [
             'foo.php' => [],
