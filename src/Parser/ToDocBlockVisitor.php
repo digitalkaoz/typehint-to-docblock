@@ -6,6 +6,7 @@ use DigitalKaoz\TTD\DocBlock\Factory;
 use DigitalKaoz\TTD\DocBlock\Generator;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
+use PhpParser\Node\Stmt\ClassMethod;
 
 /**
  * ToDocBlockVisitor.
@@ -17,7 +18,7 @@ class ToDocBlockVisitor extends \PhpParser\NodeVisitorAbstract
     /**
      * @var Generator
      */
-    private $comments;
+    private $docBlock;
     /**
      * @var NodeFilter
      */
@@ -39,7 +40,7 @@ class ToDocBlockVisitor extends \PhpParser\NodeVisitorAbstract
     public function enterNode(Node $node)
     {
         if ($this->filter->isNamespace($node)) {
-            $this->comments = $this->commentFactory->create([$node], implode('\\', $node->name->parts));
+            $this->docBlock = $this->commentFactory->create([$node], implode('\\', $node->name->parts));
         }
     }
 
@@ -49,25 +50,25 @@ class ToDocBlockVisitor extends \PhpParser\NodeVisitorAbstract
     public function leaveNode(Node $node)
     {
         if ($this->filter->matchesFilterPattern($node) && $this->filter->hasTypedParameters($node)) {
-            /* @var Node\Stmt\ClassMethod $node */
+            /* @var ClassMethod $node */
             $this->modifyDocBlock($node);
             $this->removeTypeHints($node);
         }
     }
 
-    private function removeTypeHints(Node\Stmt\ClassMethod $node)
+    private function removeTypeHints(ClassMethod $node)
     {
         foreach ($node->getParams() as $param) {
             $param->type = null;
         }
     }
 
-    private function modifyDocBlock(Node\Stmt\ClassMethod $node)
+    private function modifyDocBlock(ClassMethod $node)
     {
         $docComment = $node->getDocComment() ?: new Doc('/** ' . $node->name . ' */');
 
-        $docBlock = $this->comments->removeParamTags($docComment->getText());
-        $docBlock = $this->comments->addParams($node, $docBlock);
+        $docBlock = $this->docBlock->removeParamTags($docComment->getText());
+        $docBlock = $this->docBlock->addParams($node, $docBlock);
 
         $docComment->setText($docBlock);
 
@@ -75,14 +76,14 @@ class ToDocBlockVisitor extends \PhpParser\NodeVisitorAbstract
     }
 
     /**
-     * @param Node\Stmt\ClassMethod $node
-     * @param Doc                   $docComment
+     * @param ClassMethod $node
+     * @param Doc         $docComment
      */
-    private function reapplyModifiedNode(Node\Stmt\ClassMethod $node, Doc $docComment)
+    private function reapplyModifiedNode(ClassMethod $node, Doc $docComment)
     {
-        $comments = $node->getAttribute('comments');
+        $comments = $node->getAttributes()['comments'];
 
-        $lastComment = $comments[count($comments) - 1];
+        $lastComment = count($comments) ? $comments[count($comments) - 1] : null;
         if (!$lastComment instanceof Doc) {
             $comments[] = $docComment;
         } else {
