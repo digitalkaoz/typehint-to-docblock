@@ -8,7 +8,7 @@ this library can convert typehinted methods to docblocks (and removing the typeh
 and the other way around
 
 [![Build Status](https://img.shields.io/travis/digitalkaoz/typehint-to-docblock/master.svg?style=flat-square)](https://travis-ci.org/digitalkaoz/typehint-to-docblock)
-[![Dependency Status](https://img.shields.io/versioneye/d/php/digitalkaoz:typehint-to-docblock.svg?style=flat-square)](https://www.versioneye.com/php/digitalkaoz:typehint-to-docblock)
+[![Dependency Status](https://www.versioneye.com/user/projects/55fc863cedf404000b00050c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55fc863cedf404000b00050c)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/digitalkaoz/typehint-to-docblock.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/typehint-to-docblock/?branch=master)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/digitalkaoz/typehint-to-docblock/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/typehint-to-docblock/?branch=master)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/2adf07d1-81ae-4c73-9640-74bbf841a9d4.svg?style=flat-square)](https://insight.sensiolabs.com/projects/f7633a7e-4577-4a86-b6d9-ccaa75cb7fa0)

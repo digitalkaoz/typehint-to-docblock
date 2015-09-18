@@ -8,6 +8,8 @@ use DigitalKaoz\TTD\Parser\NodeFilter;
 use DigitalKaoz\TTD\Parser\ToDocBlockVisitor;
 use PhpParser\Comment\Doc;
 use PhpParser\Node;
+use PhpParser\Node\Param;
+use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeVisitorAbstract;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -58,7 +60,7 @@ class ToDocBlockVisitorSpec extends ObjectBehavior
         $this->leaveNode($node);
     }
 
-    public function it_modifies_class_method_nodes(Node\Stmt\ClassMethod $node, NodeFilter $filter, Doc $doc, Generator $generator, Node\Param $param)
+    public function it_modifies_class_method_nodes(ClassMethod $node, NodeFilter $filter, Doc $doc, Generator $generator, Param $param)
     {
         $filter->matchesFilterPattern($node)->willReturn(true);
         $filter->hasTypedParameters($node)->willReturn(true);
