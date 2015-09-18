@@ -10,7 +10,6 @@ code_coverage:
   whitelist: [src]
   format:
     - text
-    - html
+    - clover
   output:
-    #clover: coverage.xml
-    html: coverage
+    clover: coverage.xml
