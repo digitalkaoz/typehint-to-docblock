@@ -1,0 +1,16 @@
+suites:
+    default:
+        namespace: DigitalKaoz\TTD
+        psr4_prefix: DigitalKaoz\TTD
+
+extensions:
+    - PhpSpec\Extension\CodeCoverageExtension
+
+code_coverage:
+  whitelist: [src]
+  format:
+    - text
+    - html
+  output:
+    #clover: coverage.xml
+    html: coverage

@@ -1,0 +1,36 @@
+{
+  "name": "digitalkaoz/typehint-to-docblock",
+  "description": "converts typehints to docblocks and vice versa",
+  "minimum-stability" : "dev",
+  "prefer-stable": true,
+  "require": {
+    "nikic/php-parser": "~1.4",
+    "symfony/console": "~2.3",
+    "symfony/finder": "~2.3",
+    "gossi/docblock": "~1.4",
+    "symfony/filesystem": "~2.7",
+    "phpdocumentor/type-resolver": "~1.0@dev",
+    "pimple/pimple": "~3.0@dev",
+    "psr/log": "~1.0@dev"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "~2"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Robert Schönthal",
+      "email": "robert.schoenthal@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "DigitalKaoz\\TTD\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\DigitalKaoz\\TTD\\": "spec"
+    }
+  }
+}
