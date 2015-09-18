@@ -2,6 +2,8 @@
 
 the intention for this tiny Project is the lack of support for typehinted Collaborators in PHPSpec on PHP7+
 
+[![Build Status](https://travis-ci.org/digitalkaoz/typehint-to-docblock.svg?branch=master)](https://travis-ci.org/digitalkaoz/typehint-to-docblock)
+
 ## Installation
 
 ```

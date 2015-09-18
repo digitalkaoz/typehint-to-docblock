@@ -4,17 +4,18 @@
   "minimum-stability" : "dev",
   "prefer-stable": true,
   "require": {
+    "php" :                        ">=5.5",
     "nikic/php-parser":            "~1.4",
     "symfony/console":             "~2.3",
     "symfony/finder":              "~2.3",
-    "gossi/docblock":              "dev-patch-1@dev",
+    "gossi/docblock":              "~1.5",
     "symfony/filesystem":          "~2.7",
     "phpdocumentor/type-resolver": "~1.0@dev",
     "pimple/pimple":               "~3.0",
     "psr/log":                     "~1.0"
   },
   "require-dev": {
-    "phpspec/phpspec": "~2"
+    "phpspec/phpspec":             "~2"
   },
   "license": "MIT",
   "authors": [
@@ -33,12 +34,6 @@
       "spec\\DigitalKaoz\\TTD\\": "spec"
     }
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url" : "git@github.com:digitalkaoz/docblock.git"
-    }
-  ],
   "bin": ["bin/typehint-to-docblock"],
   "scripts": {
     "test" : "vendor/bin/phpspec run -fpretty -vv"
