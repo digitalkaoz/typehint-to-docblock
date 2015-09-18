@@ -23,7 +23,7 @@ class NodeWalker
 
     public function walk($fileNodes)
     {
-        array_walk($fileNodes, function(&$nodes) {
+        array_walk($fileNodes, function (&$nodes) {
             $nodes = $this->traverser->traverse($nodes);
         });
 
