@@ -82,7 +82,7 @@ class ToDocBlockVisitor extends \PhpParser\NodeVisitorAbstract
     private function reapplyModifiedNode(ClassMethod $node, Doc $docComment)
     {
         $attributes = $node->getAttributes();
-        $comments = isset($attributes['comments']) ? $attributes['comments'] : [];
+        $comments   = isset($attributes['comments']) ? $attributes['comments'] : [];
 
         $lastComment = count($comments) ? $comments[count($comments) - 1] : null;
         if (!$lastComment instanceof Doc) {
