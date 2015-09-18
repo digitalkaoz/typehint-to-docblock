@@ -39,61 +39,61 @@ class ServiceContainer extends Container
     private function generateServices()
     {
         return [
-            'console.application' => function () {
+            'console.application' => function() {
                 $application = new Application('phpspec-typehint-converter', '@git-version@');
                 $application->add($this['console.command.transform']);
 
                 return $application;
             },
 
-            'console.command.transform' => function () {
+            'console.command.transform' => function() {
                 return new TransformCommand($this);
             },
 
-            'processor.default' => function () {
+            'processor.default' => function() {
                 return new DefaultProcessor($this['node.walker'], $this['loader.finder'], $this['writer.filesystem']);
             },
 
-            'docblock.factory' => function () {
+            'docblock.factory' => function() {
                 return new Factory($this['parser.printer'], new ContextFactory(), new TypeResolver());
             },
 
-            'node.filter' => function () {
+            'node.filter' => function() {
                 return new NodeFilter();
             },
 
-            'node.spec_visitor' => function () {
+            'node.spec_visitor' => function() {
                 return new ToDocBlockVisitor($this['docblock.factory'], $this['node.filter']);
             },
 
-            'node.walker' => function () {
+            'node.walker' => function() {
                 return new NodeWalker($this['parser.traverser'], $this['parser.printer'], new Filesystem());
             },
 
-            'loader.finder' => function () {
+            'loader.finder' => function() {
                 return new FinderLoader(Finder::create(), $this['parser.parser']);
             },
 
-            'writer.filesystem' => function () {
+            'writer.filesystem' => function() {
                 return new FilesystemWriter($this['parser.printer'], new Filesystem());
             },
 
-            'parser.lexer' => function () {
+            'parser.lexer' => function() {
                 return new Emulative(['usedAttributes' => ['comments']]);
             },
 
-            'parser.parser' => function () {
+            'parser.parser' => function() {
                 return new Parser($this['parser.lexer']);
             },
 
-            'parser.traverser' => function () {
+            'parser.traverser' => function() {
                 $traverser = new NodeTraverser();
                 $traverser->addVisitor($this['node.spec_visitor']);
 
                 return $traverser;
             },
 
-            'parser.printer' => function () {
+            'parser.printer' => function() {
                 return new Standard();
             },
         ];
