@@ -2,6 +2,7 @@
 
 namespace spec\DigitalKaoz\TTD\DocBlock;
 
+use DigitalKaoz\TTD\DocBlock\Generator;
 use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\Context;
 use PhpParser\Node\Name;
@@ -18,7 +19,7 @@ class GeneratorSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('DigitalKaoz\TTD\DocBlock\Generator');
+        $this->shouldHaveType(Generator::class);
     }
 
     public function it_removes_all_param_tags()

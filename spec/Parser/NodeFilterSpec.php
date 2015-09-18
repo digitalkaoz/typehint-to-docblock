@@ -2,6 +2,7 @@
 
 namespace spec\DigitalKaoz\TTD\Parser;
 
+use DigitalKaoz\TTD\Parser\NodeFilter;
 use PhpParser\Node\Param;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Namespace_;
@@ -11,7 +12,7 @@ class NodeFilterSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('DigitalKaoz\TTD\Parser\NodeFilter');
+        $this->shouldHaveType(NodeFilter::class);
     }
 
     public function it_can_detect_namespace_nodes()

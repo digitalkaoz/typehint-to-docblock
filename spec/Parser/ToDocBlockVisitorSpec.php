@@ -4,6 +4,8 @@ namespace spec\DigitalKaoz\TTD\Parser;
 
 use DigitalKaoz\TTD\DocBlock\Factory;
 use DigitalKaoz\TTD\Parser\NodeFilter;
+use DigitalKaoz\TTD\Parser\ToDocBlockVisitor;
+use PhpParser\NodeVisitorAbstract;
 use PhpSpec\ObjectBehavior;
 
 class ToDocBlockVisitorSpec extends ObjectBehavior
@@ -15,7 +17,7 @@ class ToDocBlockVisitorSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('DigitalKaoz\TTD\Parser\ToDocBlockVisitor');
-        $this->shouldHaveType('PhpParser\NodeVisitorAbstract');
+        $this->shouldHaveType(ToDocBlockVisitor::class);
+        $this->shouldHaveType(NodeVisitorAbstract::class);
     }
 }

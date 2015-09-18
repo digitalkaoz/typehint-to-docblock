@@ -2,6 +2,7 @@
 
 namespace spec\DigitalKaoz\TTD\Parser;
 
+use DigitalKaoz\TTD\Parser\NodeWalker;
 use PhpParser\Node\Name;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
@@ -19,7 +20,7 @@ class NodeWalkerSpec extends ObjectBehavior
 
     public function it_is_initializable()
     {
-        $this->shouldHaveType('DigitalKaoz\TTD\Parser\NodeWalker');
+        $this->shouldHaveType(NodeWalker::class);
     }
 
     public function it_traverses_the_nodes_and_dumps_them_to_files(NodeTraverser $traverser)
