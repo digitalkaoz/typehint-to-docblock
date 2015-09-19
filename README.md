@@ -32,6 +32,18 @@ $ bin/typehint-to-docblock transform --pattern=/^foo$/ FOLDER
 where `FOLDER` is one or more paths to php classes
 if `--pattern` is provided only methods which matches this regex pattern will be modified
 
+## Use on TravisCI
+
+simple use this in your `before_scripts`
+
+```yml
+php:
+  - 7.0
+
+before_script:
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then wget https://github.com/digitalkaoz/typehint-to-docblock/releases/download/0.1.0/typehint-to-docblock.phar && php typehint-to-docblock.phar transform spec; fi;'
+```
+
 ## Examples
 
 this
