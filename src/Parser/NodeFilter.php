@@ -12,14 +12,9 @@ use PhpParser\Node\Stmt;
  */
 class NodeFilter
 {
-    private $pattern = '/.*/';
+    private $pattern;
 
-    /**
-     * set the method filter regex.
-     *
-     * @param $pattern
-     */
-    public function setPattern($pattern)
+    public function __construct($pattern = '/.*/')
     {
         $this->pattern = $pattern;
     }

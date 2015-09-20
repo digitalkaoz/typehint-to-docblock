@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+use Pimple\Container;
+
 loadAutoloader();
 run();
 
@@ -22,7 +24,9 @@ function loadAutoloader()
 
 function run()
 {
-    $container = new \DigitalKaoz\TTD\Container\ServiceContainer();
+    $container = new Pimple\Container();
+    $container->register(new \DigitalKaoz\TTD\Container\TypehintToDocBlockProvider());
+
     $app = $container['console.application'];
     $app->run();
 }

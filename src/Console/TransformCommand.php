@@ -2,6 +2,7 @@
 
 namespace DigitalKaoz\TTD\Console;
 
+use DigitalKaoz\TTD\Processor\Processor;
 use Pimple\Container;
 use Psr\Log\LoggerAwareInterface;
 use Symfony\Component\Console\Command\Command;
@@ -55,14 +56,26 @@ class TransformCommand extends Command
         //a bit ugly here, we inject the whole container to inject the pattern into the Visitor as we have no other
         //way to retrieve it afterwards (except reflections)
         //the world could be a so wonderful place :/
+        $this->container['method_filter_pattern'] = $input->getOption('pattern');
 
-        $this->container['node.filter']->setPattern($input->getOption('pattern'));
+        $processor = $this->getProcessor($output);
+
+        $processor->process($input->getArgument('resource'));
+    }
+
+    /**
+     * @param OutputInterface $output
+     *
+     * @return Processor
+     */
+    protected function getProcessor(OutputInterface $output)
+    {
         $processor = $this->container['processor.default'];
 
         if ($processor instanceof LoggerAwareInterface) {
             $processor->setLogger(new ConsoleLogger($output));
         }
 
-        $processor->process($input->getArgument('resource'));
+        return $processor;
     }
 }

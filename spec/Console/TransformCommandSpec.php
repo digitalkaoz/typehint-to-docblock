@@ -46,10 +46,9 @@ class TransformCommandSpec extends ObjectBehavior
     public function it_calls_setLogger_and_processes_the_resource(Container $container, Processor $processor, NodeFilter $filter)
     {
         $processor->implement(LoggerAwareInterface::class);
-        $container->offsetGet('node.filter')->willReturn($filter);
         $container->offsetGet('processor.default')->willReturn($processor);
+        $container->offsetSet('method_filter_pattern', '/^[let|go|it_].*$/')->shouldBeCalled();
 
-        $filter->setPattern('/^[let|go|it_].*$/')->shouldBeCalled();
         $processor->setLogger(Argument::type(LoggerInterface::class))->shouldBeCalled();
         $processor->process(__DIR__)->shouldBeCalled();
 

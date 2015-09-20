@@ -37,7 +37,7 @@ class NodeFilterSpec extends ObjectBehavior
 
     public function it_can_match_methods_by_name()
     {
-        $this->setPattern('/^[let|go|it_].*$/');
+        $this->beConstructedWith('/^[let|go|it_].*$/');
 
         $this->matchesFilterPattern(new Namespace_())->shouldBe(false);
         $this->matchesFilterPattern(new  ClassMethod('foo'))->shouldBe(false);
