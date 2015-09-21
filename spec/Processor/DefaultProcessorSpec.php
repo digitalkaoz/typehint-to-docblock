@@ -46,8 +46,7 @@ class DefaultProcessorSpec extends ObjectBehavior
     {
         $c = new Container();
         $c->register(new TypehintToDocBlockProvider());
-        $c['method_filter_pattern'] = '/^[let|go|it_].*$/';
-        $c['writer.default']        = function ($pimple) {
+        $c['writer.default'] = function ($pimple) {
             return $pimple['writer.memory'];
         };
 
