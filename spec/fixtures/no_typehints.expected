@@ -4,7 +4,7 @@ namespace Foo;
 
 class Test
 {
-    public function it_does_things($foo, $cat)
+    public function does_things($foo, $cat)
     {
     }
 }

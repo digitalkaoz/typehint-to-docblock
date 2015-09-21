@@ -7,7 +7,7 @@ use Lol\Cat;
 
 class Test
 {
-    public function it_does_things(Foo $foo, array $lol, Cat $cat)
+    public function does_things(Foo $foo, array $lol, Cat $cat)
     {
     }
 }

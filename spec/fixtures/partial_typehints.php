@@ -7,7 +7,7 @@ use Lol;
 
 class Test
 {
-    public function it_does_things(Bar\Foo $foo, Lol\Cat $cat)
+    public function does_things(Bar\Foo $foo, Lol\Cat $cat)
     {
     }
 }
