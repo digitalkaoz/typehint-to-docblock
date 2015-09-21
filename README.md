@@ -7,7 +7,7 @@ https://github.com/phpspec/phpspec/issues/659
 this library can convert typehinted methods to docblocks (and removing the typehints)
 and the other way around
 
-[![Build Status](https://img.shields.io/travis/digitalkaoz/typehint-to-docblock/master.svg?style=flat-square)](https://travis-ci.org/digitalkaoz/typehint-to-docblock)
+[![Build Status](https://img.shields.io/travis/digitalkaoz/typehint-to-docblock.svg?style=flat-square)](https://travis-ci.org/digitalkaoz/typehint-to-docblock)
 [![Dependency Status](https://www.versioneye.com/user/projects/55fc863cedf404000b00050c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55fc863cedf404000b00050c)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/digitalkaoz/typehint-to-docblock.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/typehint-to-docblock/?branch=master)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/digitalkaoz/typehint-to-docblock/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/digitalkaoz/typehint-to-docblock/?branch=master)
