@@ -41,7 +41,7 @@ php:
   - 7.0
 
 before_script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then wget https://github.com/digitalkaoz/typehint-to-docblock/releases/download/0.1.0/typehint-to-docblock.phar && php typehint-to-docblock.phar transform spec; fi;'
+  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "7.0" ]; then wget https://github.com/digitalkaoz/typehint-to-docblock/releases/download/0.2.0/typehint-to-docblock.phar && php typehint-to-docblock.phar transform spec; fi;'
 ```
 
 ## Examples
