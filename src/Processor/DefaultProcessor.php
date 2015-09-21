@@ -48,7 +48,8 @@ class DefaultProcessor implements Processor, LoggerAwareInterface
         $nodes = $this->loader->load($resource);
 
         $nodes = $this->walker->walk($nodes);
-        $this->writer->write($nodes);
+
+        return $this->writer->write($nodes);
     }
 
     /**

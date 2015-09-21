@@ -3,13 +3,10 @@
 namespace spec\DigitalKaoz\TTD\Container;
 
 use DigitalKaoz\TTD\Container\TypehintToDocBlockProvider;
-use DigitalKaoz\TTD\DocBlock\Factory;
-use PhpParser\Parser;
 use PhpSpec\ObjectBehavior;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 use Prophecy\Argument;
-use Symfony\Component\Console\Application;
 
 class TypehintToDocBlockProviderSpec extends ObjectBehavior
 {
@@ -31,7 +28,9 @@ class TypehintToDocBlockProviderSpec extends ObjectBehavior
             'node.spec_visitor'         => 'callable',
             'node.walker'               => 'callable',
             'loader.finder'             => 'callable',
+            'writer.default'            => 'callable',
             'writer.filesystem'         => 'callable',
+            'writer.memory'             => 'callable',
             'parser.lexer'              => 'callable',
             'parser.parser'             => 'callable',
             'parser.traverser'          => 'callable',

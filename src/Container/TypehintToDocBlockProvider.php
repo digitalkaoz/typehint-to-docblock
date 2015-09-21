@@ -10,7 +10,8 @@ use DigitalKaoz\TTD\Parser\NodeWalker;
 use DigitalKaoz\TTD\Parser\ToDocBlockVisitor;
 use DigitalKaoz\TTD\Processor\DefaultProcessor;
 use DigitalKaoz\TTD\Writer\FilesystemWriter;
-use phpDocumentor\Reflection\TypeResolver;
+use DigitalKaoz\TTD\Writer\MemoryWriter;
+use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\Types\ContextFactory;
 use PhpParser\Lexer\Emulative;
 use PhpParser\NodeTraverser;
@@ -49,11 +50,11 @@ class TypehintToDocBlockProvider implements ServiceProviderInterface
             },
 
             'processor.default' => function ($pimple) {
-                return new DefaultProcessor($pimple['node.walker'], $pimple['loader.finder'], $pimple['writer.filesystem']);
+                return new DefaultProcessor($pimple['node.walker'], $pimple['loader.finder'], $pimple['writer.default']);
             },
 
             'docblock.factory' => function ($pimple) {
-                return new Factory($pimple['parser.printer'], new ContextFactory(), new TypeResolver());
+                return new Factory($pimple['parser.printer'], new ContextFactory(), new FqsenResolver());
             },
 
             'node.filter' => function ($pimple) {
@@ -72,8 +73,16 @@ class TypehintToDocBlockProvider implements ServiceProviderInterface
                 return new FinderLoader(Finder::create(), $pimple['parser.parser']);
             },
 
+            'writer.default' => function ($pimple) {
+                return $pimple['writer.filesystem'];
+            },
+
             'writer.filesystem' => function ($pimple) {
                 return new FilesystemWriter($pimple['parser.printer'], new Filesystem());
+            },
+
+            'writer.memory' => function ($pimple) {
+                return new MemoryWriter($pimple['parser.printer']);
             },
 
             'parser.lexer' => function ($pimple) {

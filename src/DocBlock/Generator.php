@@ -4,7 +4,7 @@ namespace DigitalKaoz\TTD\DocBlock;
 
 use gossi\docblock\Docblock;
 use gossi\docblock\tags\ParamTag;
-use phpDocumentor\Reflection\TypeResolver;
+use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\Types\Context;
 use PhpParser\Node;
 
@@ -20,11 +20,11 @@ class Generator
      */
     private $context;
     /**
-     * @var TypeResolver
+     * @var FqsenResolver
      */
     private $resolver;
 
-    public function __construct(Context $context, TypeResolver $resolver)
+    public function __construct(Context $context, FqsenResolver $resolver)
     {
         $this->context  = $context;
         $this->resolver = $resolver;
@@ -55,11 +55,16 @@ class Generator
         $docBlock = new Docblock($text);
 
         foreach ($node->getParams() as $param) {
-            if (!$param->type || !$param->type instanceof Node\Name) {
-                continue;
+            if ($param->type && $param->type instanceof Node\Name) {
+                $type = $this->resolver->resolve(implode('\\', $param->type->parts), $this->context);
+                $type = str_replace('\\\\', '\\', $type);
+            } elseif ($param->type && is_string($param->type)) {
+                $type = $param->type;
             }
 
-            $type = $this->resolver->resolve(implode('', $param->type->parts), $this->context);
+            if (!isset($type)) {
+                continue;
+            }
 
             $docBlock->appendTag(new ParamTag((string) $type . ' $' . $param->name));
         }

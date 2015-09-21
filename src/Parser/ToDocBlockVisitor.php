@@ -59,7 +59,9 @@ class ToDocBlockVisitor extends \PhpParser\NodeVisitorAbstract
     private function removeTypeHints(ClassMethod $node)
     {
         foreach ($node->getParams() as $param) {
-            $param->type = null;
+            if ($param->type instanceof Node\Name) {
+                $param->type = null;
+            }
         }
     }
 

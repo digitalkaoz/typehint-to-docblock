@@ -2,6 +2,7 @@
 
 namespace DigitalKaoz\TTD\DocBlock;
 
+use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\ContextFactory;
 use PhpParser\PrettyPrinterAbstract;
@@ -26,7 +27,7 @@ class Factory
      */
     private $resolver;
 
-    public function __construct(PrettyPrinterAbstract $printer, ContextFactory $contextFactory, TypeResolver $resolver)
+    public function __construct(PrettyPrinterAbstract $printer, ContextFactory $contextFactory, FqsenResolver $resolver)
     {
         $this->printer        = $printer;
         $this->contextFactory = $contextFactory;

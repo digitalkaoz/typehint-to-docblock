@@ -4,7 +4,7 @@ namespace spec\DigitalKaoz\TTD\DocBlock;
 
 use DigitalKaoz\TTD\DocBlock\Factory;
 use DigitalKaoz\TTD\DocBlock\Generator;
-use phpDocumentor\Reflection\TypeResolver;
+use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\Types\ContextFactory;
 use PhpParser\PrettyPrinterAbstract;
 use PhpSpec\ObjectBehavior;
@@ -13,7 +13,7 @@ class FactorySpec extends ObjectBehavior
 {
     public function let(PrettyPrinterAbstract $printer)
     {
-        $this->beConstructedWith($printer, new ContextFactory(), new TypeResolver());
+        $this->beConstructedWith($printer, new ContextFactory(), new FqsenResolver());
     }
 
     public function it_is_initializable()

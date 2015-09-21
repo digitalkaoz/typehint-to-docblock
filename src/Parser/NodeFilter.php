@@ -69,4 +69,14 @@ class NodeFilter
     {
         return $node instanceof Stmt\Namespace_;
     }
+
+    /**
+     * @param Node $node
+     *
+     * @return bool
+     */
+    public function isUse(Node $node)
+    {
+        return $node instanceof Stmt\Use_;
+    }
 }

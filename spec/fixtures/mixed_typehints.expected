@@ -1,0 +1,19 @@
+<?php
+
+namespace Foo;
+
+use Bar\Foo;
+use Lol\Cat;
+class Test
+{
+    /**
+     * it_does_things
+     *
+     * @param \Bar\Foo $foo
+     * @param array $lol
+     * @param \Lol\Cat $cat
+     */
+    function it_does_things($foo, array $lol, $cat)
+    {
+    }
+}
