@@ -69,6 +69,8 @@ class Generator
             $docBlock->appendTag(new ParamTag((string) $type . ' $' . $param->name));
         }
 
-        return $docBlock->toString();
+        $string = $docBlock->toString();
+
+        return str_replace("* \n", "*\n", $string); //TODO remove once https://github.com/gossi/docblock/pull/2 is merged
     }
 }

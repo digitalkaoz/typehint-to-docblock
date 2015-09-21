@@ -13,7 +13,7 @@ class Test
      * @param array $lol
      * @param \Lol\Cat $cat
      */
-    function it_does_things($foo, array $lol, $cat)
+    public function it_does_things($foo, array $lol, $cat)
     {
     }
 }
