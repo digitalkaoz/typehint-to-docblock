@@ -1,0 +1,17 @@
+<?php
+
+namespace Foo;
+
+class Test
+{
+    /**
+     * does_things
+     *
+     * @param \Foo $foo
+     * @param \Foo\Bar\Baz $baz
+     * @param \DateTime $date
+     */
+    public function does_things($foo, $baz, $date)
+    {
+    }
+}

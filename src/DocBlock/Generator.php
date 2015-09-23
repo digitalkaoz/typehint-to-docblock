@@ -56,8 +56,12 @@ class Generator
 
         foreach ($node->getParams() as $param) {
             if ($param->type && $param->type instanceof Node\Name) {
-                $type = $this->resolver->resolve(implode('\\', $param->type->parts), $this->context);
-                $type = str_replace('\\\\', '\\', $type);
+                if ($param->type->isFullyQualified()) {
+                    $type = '\\' . implode('\\', $param->type->parts);
+                } else {
+                    $type = $this->resolver->resolve(implode('\\', $param->type->parts), $this->context);
+                    $type = str_replace('\\\\', '\\', $type);
+                }
             } elseif ($param->type && is_string($param->type)) {
                 $type = $param->type;
             }
