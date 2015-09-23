@@ -72,7 +72,11 @@ class Generator
      */
     private function getParamType(Node\Param $param)
     {
-        if ($param->type && $param->type instanceof Node\Name) {
+        if ($param->type === null) {
+            return null;
+        }
+
+        if ($param->type instanceof Node\Name) {
             if ($param->type->isFullyQualified()) {
                 return '\\' . implode('\\', $param->type->parts);
             } else {
@@ -80,8 +84,8 @@ class Generator
 
                 return str_replace('\\\\', '\\', $type);
             }
-        } elseif ($param->type && is_string($param->type)) {
-            return $param->type;
         }
+
+        return $param->type;
     }
 }
