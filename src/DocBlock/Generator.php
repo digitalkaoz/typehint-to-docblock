@@ -9,8 +9,6 @@ use phpDocumentor\Reflection\Types\Context;
 use PhpParser\Node;
 
 /**
- * Generator.
- *
  * @author Robert Schönthal <robert.schoenthal@gmail.com>
  */
 class Generator
@@ -55,7 +53,8 @@ class Generator
         $docBlock = new Docblock($text);
 
         foreach ($node->getParams() as $param) {
-            if (!$type = $this->getParamType($param)) {
+            $type = $this->getFullyQualifiedParamType($param);
+            if (null === $type) {
                 continue;
             }
 
@@ -70,25 +69,29 @@ class Generator
      *
      * @return string
      */
-    private function getParamType(Node\Param $param)
+    private function getFullyQualifiedParamType(Node\Param $param)
     {
-        //no typehint
-        if ($param->type === null) {
-            return null;
+        if (!$param->type instanceof Node\Name) {
+            return $param->type;
         }
 
-        //class typehint
-        if ($param->type instanceof Node\Name) {
-            if ($param->type->isFullyQualified()) {
-                return '\\' . implode('\\', $param->type->parts);
-            } else {
-                $type = $this->resolver->resolve(implode('\\', $param->type->parts), $this->context);
-
-                return str_replace('\\\\', '\\', $type);
-            }
+        $relativeType = $param->type->toString();
+        if ($param->type->isFullyQualified()) {
+            return '\\' . $relativeType;
         }
 
-        //string
-        return $param->type;
+        return $this->convertToFullyQualifiedType($relativeType);
+    }
+
+    /**
+     * @param string $relativeType
+     *
+     * @return string
+     */
+    private function convertToFullyQualifiedType($relativeType)
+    {
+        $type = $this->resolver->resolve($relativeType, $this->context);
+
+        return str_replace('\\\\', '\\', $type);
     }
 }
