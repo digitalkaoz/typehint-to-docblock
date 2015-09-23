@@ -85,7 +85,7 @@ class TypehintToDocBlockProvider implements ServiceProviderInterface
                 return new MemoryWriter($pimple['parser.printer']);
             },
 
-            'parser.lexer' => function ($pimple) {
+            'parser.lexer' => function () {
                 return new Emulative(['usedAttributes' => ['comments']]);
             },
 
@@ -100,7 +100,7 @@ class TypehintToDocBlockProvider implements ServiceProviderInterface
                 return $traverser;
             },
 
-            'parser.printer' => function ($pimple) {
+            'parser.printer' => function () {
                 return new Standard();
             },
         ];

@@ -3,7 +3,6 @@
 namespace DigitalKaoz\TTD\DocBlock;
 
 use phpDocumentor\Reflection\FqsenResolver;
-use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\ContextFactory;
 use PhpParser\PrettyPrinterAbstract;
 
@@ -23,7 +22,7 @@ class Factory
      */
     private $contextFactory;
     /**
-     * @var TypeResolver
+     * @var FqsenResolver
      */
     private $resolver;
 
