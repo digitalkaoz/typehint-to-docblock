@@ -55,26 +55,33 @@ class Generator
         $docBlock = new Docblock($text);
 
         foreach ($node->getParams() as $param) {
-            if ($param->type && $param->type instanceof Node\Name) {
-                if ($param->type->isFullyQualified()) {
-                    $type = '\\' . implode('\\', $param->type->parts);
-                } else {
-                    $type = $this->resolver->resolve(implode('\\', $param->type->parts), $this->context);
-                    $type = str_replace('\\\\', '\\', $type);
-                }
-            } elseif ($param->type && is_string($param->type)) {
-                $type = $param->type;
-            }
-
-            if (!isset($type)) {
+            if (!$type = $this->getParamType($param)) {
                 continue;
             }
 
             $docBlock->appendTag(new ParamTag((string) $type . ' $' . $param->name));
         }
 
-        $string = $docBlock->toString();
+        return str_replace("* \n", "*\n", $docBlock->toString()); //TODO remove once https://github.com/gossi/docblock/pull/2 is merged
+    }
 
-        return str_replace("* \n", "*\n", $string); //TODO remove once https://github.com/gossi/docblock/pull/2 is merged
+    /**
+     * @param Node\Param $param
+     *
+     * @return string
+     */
+    private function getParamType(Node\Param $param)
+    {
+        if ($param->type && $param->type instanceof Node\Name) {
+            if ($param->type->isFullyQualified()) {
+                return '\\' . implode('\\', $param->type->parts);
+            } else {
+                $type = $this->resolver->resolve(implode('\\', $param->type->parts), $this->context);
+
+                return str_replace('\\\\', '\\', $type);
+            }
+        } elseif ($param->type && is_string($param->type)) {
+            return $param->type;
+        }
     }
 }
