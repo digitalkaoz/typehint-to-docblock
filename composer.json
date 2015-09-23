@@ -10,12 +10,12 @@
     "symfony/finder":              "~2.3",
     "gossi/docblock":              "~1.5",
     "symfony/filesystem":          "~2.7",
-    "phpdocumentor/type-resolver": "~1.0@dev",
+    "phpdocumentor/type-resolver": "~0.1",
     "pimple/pimple":               "~3.0",
     "psr/log":                     "~1.0"
   },
   "require-dev": {
-    "phpspec/phpspec":             "~2"
+    "phpspec/phpspec":             "^2"
   },
   "license": "MIT",
   "authors": [
