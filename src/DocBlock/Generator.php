@@ -72,10 +72,12 @@ class Generator
      */
     private function getParamType(Node\Param $param)
     {
+        //no typehint
         if ($param->type === null) {
             return null;
         }
 
+        //class typehint
         if ($param->type instanceof Node\Name) {
             if ($param->type->isFullyQualified()) {
                 return '\\' . implode('\\', $param->type->parts);
@@ -86,6 +88,7 @@ class Generator
             }
         }
 
+        //string
         return $param->type;
     }
 }
