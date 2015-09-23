@@ -19,7 +19,7 @@ and the other way around
 ## Installation
 
 ```
-$ composer require digitalkaoz/typehint-to-docblock dev-master
+$ composer require digitalkaoz/typehint-to-docblock
 ``` 
 
 ## Usage
